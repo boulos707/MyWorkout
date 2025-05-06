@@ -43,90 +43,109 @@
         android:layout_marginTop="10dp"
         />
 
-    <CheckBox
-        android:layout_width="wrap_content"
+    <!-- Checkboxes in Horizontal Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Yoga"
-        android:id="@+id/cbYoga"
-        android:textSize="20dp"
-        />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Boxing"
-        android:id="@+id/cbBoxing"
-        android:textSize="20dp"
-        />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pilates"
-        android:id="@+id/cbPilates"
-        android:textSize="20dp"
-        />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Regular"
-        android:id="@+id/cbRegular"
-        android:textSize="20dp"
-        />
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:gravity="center">
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yoga"
+            android:id="@+id/cbYoga"
+            android:textSize="20dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Boxing"
+            android:id="@+id/cbBoxing"
+            android:textSize="20dp" />
+
+        <CheckBox
+            android:id="@+id/cbPilates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilates"
+            android:textSize="20dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regular"
+            android:id="@+id/cbRegular"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <!-- RadioGroup for Duration -->
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/rgRadioGroupDuration"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        >
+        android:layout_marginTop="20dp">
+
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1 Month"
             android:textSize="20dp"
             android:checked="true"
-            android:id="@+id/rbOneMonth"/>
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3 Months"
-        android:textSize="20dp"
-        android:id="@+id/rbThreeMonths"/>
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="6 Months"
-        android:textSize="20dp"
-        android:id="@+id/rbSixMonths"/>
+            android:id="@+id/rbOneMonth" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 Months"
+            android:textSize="20dp"
+            android:id="@+id/rbThreeMonths" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6 Months"
+            android:textSize="20dp"
+            android:id="@+id/rbSixMonths" />
     </RadioGroup>
 
+    <!-- Buttons with Centering -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Insert"
         android:id="@+id/btnInsert"
-        />
+        android:layout_gravity="center" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select one"
         android:id="@+id/btnSelectOne"
-        />
+        android:layout_gravity="center" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select All"
         android:id="@+id/btnSelectAll"
-        />
+        android:layout_gravity="center" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete"
         android:id="@+id/btnDelete"
-        />
+        android:layout_gravity="center" />
+
     <Button
+        android:id="@+id/btnCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:id="@+id/btnUpdate"
-        />
+        android:text="Calculate"
+        android:layout_gravity="center" />
+
 </LinearLayout>
