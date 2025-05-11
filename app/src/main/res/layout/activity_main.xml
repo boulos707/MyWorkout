@@ -1,151 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stay Fit"
-        android:textSize="15pt"
-        android:layout_gravity="center"
-        android:paddingBottom="20dp"
-        android:textStyle="bold"
-        />
+    android:layout_height="match_parent">
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/etId"
         android:hint="ID"
         android:inputType="number"
-        android:layout_marginTop="10dp"
-        />
-    <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etFullName"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/etName"
         android:hint="Full Name"
-        android:inputType="textPersonName"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etPhoneNumber"
+        android:id="@+id/etPhone"
         android:hint="Phone Number"
-        android:inputType="numberDecimal"
-        android:layout_marginTop="10dp"
-        />
+        android:inputType="phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    <!-- Checkboxes in Horizontal Layout -->
-    <LinearLayout
+    <CheckBox
+        android:id="@+id/cbYoga"
+        android:text="Yoga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/cbBoxing"
+        android:text="Boxing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/cbPilates"
+        android:text="Pilates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/cbRegular"
+        android:text="Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/etDuration"
+        android:hint="Duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:text="Save Client"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnFetch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        android:gravity="center">
+        android:text="Fetch All Clients" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yoga"
-            android:id="@+id/cbYoga"
-            android:textSize="20dp" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Boxing"
-            android:id="@+id/cbBoxing"
-            android:textSize="20dp" />
-
-        <CheckBox
-            android:id="@+id/cbPilates"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pilates"
-            android:textSize="20dp" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Regular"
-            android:id="@+id/cbRegular"
-            android:textSize="20dp" />
-    </LinearLayout>
-
-    <!-- RadioGroup for Duration -->
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rgRadioGroupDuration"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1 Month"
-            android:textSize="20dp"
-            android:checked="true"
-            android:id="@+id/rbOneMonth" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3 Months"
-            android:textSize="20dp"
-            android:id="@+id/rbThreeMonths" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="6 Months"
-            android:textSize="20dp"
-            android:id="@+id/rbSixMonths" />
-    </RadioGroup>
-
-    <!-- Buttons with Centering -->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insert"
-        android:id="@+id/btnInsert"
-        android:layout_gravity="center" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select one"
-        android:id="@+id/btnSelectOne"
-        android:layout_gravity="center" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select All"
-        android:id="@+id/btnSelectAll"
-        android:layout_gravity="center" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete"
-        android:id="@+id/btnDelete"
-        android:layout_gravity="center" />
-
-    <Button
-        android:id="@+id/btnCalculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calculate"
-        android:layout_gravity="center" />
 
 </LinearLayout>
