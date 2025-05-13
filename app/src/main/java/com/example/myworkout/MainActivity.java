@@ -17,9 +17,12 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     EditText etId, etName, etPhone, etDuration;
     CheckBox cbYoga, cbBoxing, cbPilates, cbRegular;
-    Button btnSave, btnFetchAllClients;
+    Button btnSave, btnFetchAllClients, btnDelete;
     String insertUrl = "http://10.0.2.2/fitness_app/insert.php"; // use 10.0.2.2 for emulator
     String fetchUrl = "http://10.0.2.2/fitness_app/select_all.php"; // The URL for fetching all clients
+
+    String deleteUrl = "http://10.0.2.2/fitness_app/delete.php"; // the url for delete client
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +41,24 @@ public class MainActivity extends AppCompatActivity {
 
         btnSave = findViewById(R.id.btnSave);
         btnFetchAllClients = findViewById(R.id.btnFetch);
+        btnDelete = findViewById(R.id.btnDelete);
 
         // Save Client Logic
         btnSave.setOnClickListener(view -> saveClient());
 
         // Fetch All Clients Logic
         btnFetchAllClients.setOnClickListener(view -> fetchAllClients());
+        // delete clients
+        btnDelete.setOnClickListener(view -> deleteClient());
+
     }
 
     private void saveClient() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, insertUrl,
-                response -> Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show(),
+                response -> {
+                    Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
+                    clearFields();
+                },
                 error -> Toast.makeText(MainActivity.this, "Error: " + error.toString(), Toast.LENGTH_SHORT).show()) {
 
             @Override
@@ -84,4 +94,35 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
     }
+
+    private void deleteClient() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, deleteUrl,
+                response -> Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show(),
+                error -> Toast.makeText(MainActivity.this, "Error: " + error.toString(), Toast.LENGTH_SHORT).show()) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", etId.getText().toString()); // Make sure this EditText contains the ID to delete
+                return params;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(stringRequest);
+    }
+
+
+    private void clearFields() {
+        etId.setText("");
+        etName.setText("");
+        etPhone.setText("");
+        etDuration.setText("");
+
+        cbYoga.setChecked(false);
+        cbBoxing.setChecked(false);
+        cbPilates.setChecked(false);
+        cbRegular.setChecked(false);
+    }
+
 }
