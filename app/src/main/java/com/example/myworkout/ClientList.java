@@ -41,7 +41,8 @@ public class ClientList extends AppCompatActivity {
                                 String name = client.getString("full_name");
                                 String phone = client.getString("phone_number");
                                 String duration = client.getString("duration");
-                                clients.add(name + " | " + phone + " | " + duration);
+                                clients.add("Name: " + name + " | Phone Number: " + phone + " | Duration: " + duration);
+
                             }
                         }
 

@@ -11,13 +11,17 @@ import com.android.volley.*;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     EditText etId, etName, etPhone, etDuration;
     CheckBox cbYoga, cbBoxing, cbPilates, cbRegular;
-    Button btnSave, btnFetchAllClients, btnDelete;
+    Button btnSave, btnFetchAllClients, btnDelete, btnTotalSalary;
     String insertUrl = "http://10.0.2.2/fitness_app/insert.php"; // use 10.0.2.2 for emulator
     String fetchUrl = "http://10.0.2.2/fitness_app/select_all.php"; // The URL for fetching all clients
 
@@ -42,15 +46,17 @@ public class MainActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnFetchAllClients = findViewById(R.id.btnFetch);
         btnDelete = findViewById(R.id.btnDelete);
+        btnTotalSalary = findViewById(R.id.btnTotalSalary);
+
 
         // Save Client Logic
         btnSave.setOnClickListener(view -> saveClient());
-
         // Fetch All Clients Logic
         btnFetchAllClients.setOnClickListener(view -> fetchAllClients());
-        // delete clients
+        // Delete Clients
         btnDelete.setOnClickListener(view -> deleteClient());
-
+        // Calculate All Salary
+        btnTotalSalary.setOnClickListener(v -> calculateTotalSalary());
     }
 
     private void saveClient() {
@@ -112,6 +118,31 @@ public class MainActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    private void calculateTotalSalary() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, fetchUrl,
+                response -> {
+                    try {
+                        JSONArray clients = new JSONArray(response);
+                        int totalSalary = 0;
+                        int pricePerMonth = 50;
+
+                        for (int i = 0; i < clients.length(); i++) {
+                            JSONObject client = clients.getJSONObject(i);
+                            int duration = client.getInt("duration");
+                            totalSalary += duration * pricePerMonth;
+                        }
+
+                        Toast.makeText(MainActivity.this, "Total Salary: $" + totalSalary, Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(MainActivity.this, "Error parsing data", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> Toast.makeText(MainActivity.this, "Error: " + error.toString(), Toast.LENGTH_SHORT).show());
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(stringRequest);
+    }
 
     private void clearFields() {
         etId.setText("");
