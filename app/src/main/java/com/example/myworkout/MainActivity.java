@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
     EditText etId, etName, etPhone, etDuration;
     CheckBox cbYoga, cbBoxing, cbPilates, cbRegular;
     Button btnSave, btnFetchAllClients, btnDelete, btnTotalSalary;
-    String insertUrl = "http://10.0.2.2/fitness_app/insert.php"; // use 10.0.2.2 for emulator
-    String fetchUrl = "http://10.0.2.2/fitness_app/select_all.php"; // The URL for fetching all clients
+    String insertUrl = "http://10.0.2.2/fitness_app/insert.php";
+    String fetchUrl = "http://10.0.2.2/fitness_app/select_all.php";
 
-    String deleteUrl = "http://10.0.2.2/fitness_app/delete.php"; // the url for delete client
+    String deleteUrl = "http://10.0.2.2/fitness_app/delete.php";
 
 
     @Override
@@ -89,10 +89,8 @@ public class MainActivity extends AppCompatActivity {
     private void fetchAllClients() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, fetchUrl,
                 response -> {
-                    // This is where you would process the response from the server.
-                    // You can start the ClientList activity and pass the data to it.
                     Intent intent = new Intent(MainActivity.this, ClientList.class);
-                    intent.putExtra("clients", response); // Assuming the response is a list of clients in JSON or plain text format
+                    intent.putExtra("clients", response);
                     startActivity(intent);
                 },
                 error -> Toast.makeText(MainActivity.this, "Error: " + error.toString(), Toast.LENGTH_SHORT).show());
@@ -109,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("id", etId.getText().toString()); // Make sure this EditText contains the ID to delete
+                params.put("id", etId.getText().toString());
                 return params;
             }
         };
